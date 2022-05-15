@@ -13,6 +13,9 @@ const Navbar: FC = () => {
       <li>
         <Link to="/posts">PostListScreen</Link>
       </li>
+      <li>
+        <Link to="/books">BookListScreen</Link>
+      </li>
     </ul>
   );
 };

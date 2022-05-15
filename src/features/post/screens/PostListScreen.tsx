@@ -12,8 +12,6 @@ const PostListScreen: FC = () => {
     return <div>Error...</div>;
   }
 
-  console.log(data);
-
   return (
     <div>
       <h3>PostListScreen</h3>
