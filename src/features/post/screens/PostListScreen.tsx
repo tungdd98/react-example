@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import { usePosts } from "../hooks/post.hooks";
 
 const PostListScreen: FC = () => {
@@ -20,7 +21,9 @@ const PostListScreen: FC = () => {
 
       <ul>
         {data.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
         ))}
       </ul>
     </div>

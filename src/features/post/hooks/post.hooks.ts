@@ -9,3 +9,15 @@ export const usePosts = () => {
     return response.data;
   });
 };
+
+export const usePostDetail = (postId: string) => {
+  return useQuery(
+    "postDetail",
+    async (): Promise<PostDef> => {
+      const response = await postApi.getPostDetailApi(postId);
+
+      return response.data;
+    },
+    { enabled: !!postId }
+  );
+};

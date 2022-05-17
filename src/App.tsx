@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import UserListScreen from "features/user/screens/UserListScreen";
 import HomeScreen from "features/home/screens/HomeScreen";
 import PostListScreen from "features/post/screens/PostListScreen";
+import PostDetailScreen from "features/post/screens/PostDetailScreen";
 import BookListScreen from "features/book/screens/BookListScreen";
 import BookDetailScreen from "features/book/screens/BookDetailScreen";
 import Navbar from "components/Navbar/Navbar";
@@ -17,6 +18,7 @@ const App = () => {
           <Route exact path="/" component={HomeScreen} />
           <Route exact path="/users" component={UserListScreen} />
           <Route exact path="/posts" component={PostListScreen} />
+          <Route exact path="/posts/:id" component={PostDetailScreen} />
           <Route exact path="/books" component={BookListScreen} />
           <Route exact path="/books/:id" component={BookDetailScreen} />
           <Redirect to="/" />
