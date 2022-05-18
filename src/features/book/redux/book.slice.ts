@@ -1,5 +1,16 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BookDef } from "../types/book.types";
+import { bookApi as api } from "../api/book.api";
+
+export const updateBook = createAsyncThunk<
+  BookDef,
+  { bookId: string; title: string }
+>("book/updateBook", async ({ bookId, title }) => {
+  const response = await api.updateBookApi(bookId, title);
+
+  return response.data;
+});
 
 // Define a service using a base URL and expected endpoints
 export const bookApi = createApi({
@@ -25,9 +36,23 @@ export const bookApi = createApi({
     getBookById: builder.query<BookDef, string>({
       query: (id) => `books/${id}`,
     }),
+    updateBook: builder.mutation<BookDef, Partial<BookDef>>({
+      query: (data) => {
+        const { id, ...body } = data;
+        return {
+          url: `books/${id}`,
+          method: "PUT",
+          body,
+        };
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetBookListQuery, useGetBookByIdQuery } = bookApi;
+export const {
+  useGetBookListQuery,
+  useGetBookByIdQuery,
+  useUpdateBookMutation,
+} = bookApi;
